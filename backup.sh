@@ -6,7 +6,7 @@ test -d ${SERVERCONFIG_FOLDER} || { echo "ServerConfig folder not found. (try se
 test -f ${GITHUB_APP_KEY_FILENAME} || { echo "Github app key file not found. Could not backup server config. (try setting env var GITHUB_APP_KEY_FILENAME)"; exit 1; }
 test -n ${BACKUP_ENCRYPTION_PASSPHRASE} || { echo "Passphrase not set for backup file. (try setting env var BACKUP_ENCRYPTION_PASSPHRASE)"; exit 1; }
 
-backup_content=$(tar czf - ${SERVERCONFIG_FOLDER}/* | gpg --symmetric --cipher-algo aes256 --batch --passphrase ${BACKUP_ENCRYPTION_PASSPHRASE} | base64 -w 0)
+backup_content=$(tar -C ${SERVERCONFIG_FOLDER} -czf - ./ | gpg --symmetric --cipher-algo aes256 --batch --passphrase ${BACKUP_ENCRYPTION_PASSPHRASE} | base64 -w 0)
 
 # Backup via github API
 now=$(date +%s)
