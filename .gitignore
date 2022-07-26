@@ -105,3 +105,7 @@ secrets/hntp-squad-server-config-manager.2022-07-24.private-key.pem
 ServerConfig
 unpack
 squadserverbackup.tar.gz.gpg
+test
+*.tar.gz
+/backup/squadserverbackup.tar.gz.gpg
+egg/egg-h-n-t-p-squad.json
